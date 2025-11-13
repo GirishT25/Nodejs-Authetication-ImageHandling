@@ -1,0 +1,17 @@
+const cloudinary = require('../config/cloudinary');
+
+
+const uploadCloudinary = async (filepath)=>{
+    try {
+        const result = await cloudinary.uploader.upload(filepath);
+        return{
+            url : result.secure_url,
+            publicId : result.public_id 
+        }
+
+    } catch (error) {
+        console.error('Error while uploading the image' , error);
+    }
+}
+
+module.exports = {uploadCloudinary};
